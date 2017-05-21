@@ -19,13 +19,11 @@
   template:
     src: "sources.list.{{ ansible_distribution | lower }}.j2"
     dest: /etc/apt/sources.list
-  register: tumbumer_soft_standard_updated
 
 - name: "tumbumer.soft: update package cache"
   become: true
   apt:
     update_cache: yes
-  when: tumbumer_soft_standard_updated.changed
 
 - name: "tumbumer.soft: install packages from standard repos"
   become: true
@@ -51,14 +49,12 @@
     state: present
     update_cache: no
   with_items: "{{ tumbumer_soft_additional_repos | default({}) }}"
-  register: tumbumer_soft_additional_updated
   when: tumbumer_soft_additional_repos is defined
 
 - name: "tumbumer.soft: update package cache"
   become: true
   apt:
     update_cache: yes
-  when: tumbumer_soft_additional_updated.changed
 
 - name: "tumbumer.soft: install packages from additional repos"
   become: true
