@@ -10,7 +10,7 @@ None.
 
 var | default | choices | description
 ---|---|---|---
-tumbumer_soft_country | | us, de, ru, etc. | Country code for mirror site, if not set then default distributive source will be used
+tumbumer_soft_country | | us, de, ru, etc. | Country code for mirror site, if not set then nothing happens
 tumbumer_soft_standard_packages | | | Comma separated package list for install from standart repos
 tumbumer_soft_additional_keys | | | Additional repository key list
 tumbumer_soft_additional_keys.url | | | Key url

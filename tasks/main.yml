@@ -1,24 +1,20 @@
 ---
 - name: "tumbumer.soft: check os version"
   fail:
-    msg: "OS must be Debian Jessie or Ubuntu 16.04 Xenial Xerus"
-  when: (not (ansible_distribution == "Debian" and ansible_distribution_release == "jessie")) and (not (ansible_distribution == "Ubuntu" and ansible_distribution_release == "xenial"))
+    msg: "OS must be Debian Stretch or Ubuntu 16.04 Xenial Xerus"
+  when: (not (ansible_distribution == "Debian" and ansible_distribution_release == "stretch")) and (not (ansible_distribution == "Ubuntu" and ansible_distribution_release == "xenial"))
 
 - name: "tumbumer.soft: set mirror if country is defined"
   set_fact:
     tumbumer_soft_mirror: "{{ tumbumer_soft_country }}."
   when: tumbumer_soft_country is defined
 
-- name: "tumbumer.soft: set mirror if country is not defined"
-  set_fact:
-    tumbumer_soft_mirror: ''
-  when: tumbumer_soft_country is not defined
-
 - name: "tumbumer.soft: /etc/apt/sources.list"
   become: true
   template:
     src: "sources.list.{{ ansible_distribution | lower }}.j2"
     dest: /etc/apt/sources.list
+  when: tumbumer_soft_country is defined
 
 - name: "tumbumer.soft: update package cache"
   become: true
