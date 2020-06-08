@@ -1,9 +1,4 @@
 ---
-- name: "tumbumer.soft: check os version"
-  fail:
-    msg: "OS must be Ubuntu 18.04 Bionic Beaver"
-  when: not (ansible_distribution == "Ubuntu" and ansible_distribution_release == "bionic")
-
 - name: "tumbumer.soft: set mirror if country is defined"
   set_fact:
     tumbumer_soft_mirror: "{{ tumbumer_soft_country }}."

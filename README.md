@@ -46,7 +46,3 @@ None.
 ## License
 
 Apache-2.0
-
-## Author Information
-
-Denis Dvoretskov aka tumbumer <denis@tumbum.com>
